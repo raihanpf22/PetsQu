@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Hash;
 use Seesion;
 use App\Models\User;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -65,10 +66,11 @@ class AuthUserController extends Controller
         ]);
     }
     
-    public function main(){
+    public function main(Request $request){
+        $product = Product::all();
         if(Auth::check()){
 
-            return view('main');
+            return view('main', ['product'=>$product]);
         }
         return redirect('login')
         ->with('danger','Login details are not valid !');
