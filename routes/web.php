@@ -20,15 +20,14 @@ use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('beranda');
-});
+})->name('beranda');
 
 // Route User
-
-Route::get('/login', [AuthUserController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [AuthUserController::class, 'userLogin']);
 Route::get('/main', [AuthUserController::class, 'main'])->name('main');
 
-Route::post('/logout', [AuthUserController::class, 'userLogout'])->name('logout');
+Route::get('/login', [AuthUserController::class, 'index'])->name('login');
+Route::post('/login/auth', [AuthUserController::class, 'userLogin'])->name('userLogin');
+Route::get('/logout', [AuthUserController::class, 'userLogout'])->name('userLogout');
 
 Route::get('/register', [AuthUserController::class, 'userRegister'])->name('register');
 Route::post('/register', [AuthUserController::class, 'authRegister'])->name('register.user');

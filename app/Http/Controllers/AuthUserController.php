@@ -28,22 +28,16 @@ class AuthUserController extends Controller
         if (Auth::attempt($credentials)){
             $request->session()->regenerate();
             return redirect()
-            ->intended('main')
+            ->intended('/main')
             ->withSuccess('Signed in');
         }
         return redirect('login')->with('danger','Login details are not valid !');
     }
-    public function main(Request $request){
-        $username = User::with('users')->get('name');
-        $useremail = User::with('users')->get('email');
-
-        return view('main', ['name'=>$username, 'email'=>$useremail]);
-    }
-
+    
     public function userRegister(Request $request){
         return view('auth.register');
     }
-
+    
     public function authRegister(Request $request){
         $request->validate([
             'name'=>'required',
@@ -55,11 +49,11 @@ class AuthUserController extends Controller
         ]);
         $data = $request->all();
         $check = $this->create($data);
-
+        
         return redirect("main")->with('success', 'Account Created Successfully!');
         
     }
-
+    
     public function create(array $data){
         return User::create([
             'name' => $data['name'],
@@ -70,11 +64,21 @@ class AuthUserController extends Controller
             'password' => Hash::make($data['password'])
         ]);
     }
+    
+    public function main(){
+        if(Auth::check()){
+
+            return view('main');
+        }
+        return redirect('login')
+        ->with('danger','Login details are not valid !');
+
+    }
+
 
     public function userLogout(){
-        Session()->flush();
-        Auth::logout();
-        return view('beranda');
+
+        return redirect()->route('beranda');
     }
 
 
