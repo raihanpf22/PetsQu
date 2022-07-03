@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -5,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Beranda | PetsQu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
   </head>
   <body style="background-color: #eee;">
+    @include('sweetalert::alert')
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">PetsQu</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,12 +42,12 @@
     <!-- End-Navbar -->
 
     <!-- Cards Product -->
- 
- 
+    
 
   <div class="container py-5">
     <div class="row">
       @foreach($product as $item)
+      
       <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
         <div class="card mb-4">
           <div class="d-flex justify-content-between p-3">
@@ -69,11 +72,18 @@
 
             <div class="d-flex justify-content-between mb-2">
               <p class="text-muted mb-0">Available: <span class="fw-bold">{{$item->stock}}</span></p>
+              
+              <input type="number" min="1" max="{{ $item->stock }}" name="quantity" id="quantity" required>
             </div>
             <div class="d-flex justify-content-between align-items-center pb-2 mb-1">
               <a href="#!" class="text-dark fw-bold">Details</a>
-              <button type="button" class="btn btn-success">Add To Cart</button>
+          
+                <a href="{{ route('add_cart', $item->product_id )}}" class="btn btn-success">Add To Cart</a>
+              
             </div>
+              
+             
+             
           </div>
         </div>
     </div>

@@ -15,9 +15,9 @@ class AdminAuthenticated
     //  * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
     //  * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
     //  */
-    public function handle(Request $request, Closure $next, $guard = null)
+    public function handle(Request $request, Closure $next)
     {
-        if(Auth::guard('admin')){
+        if(auth()->user()->is_admin==1){
             return next($request);
         }
         return response()->json('Your account is inactive');

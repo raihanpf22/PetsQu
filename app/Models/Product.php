@@ -21,4 +21,9 @@ class Product extends Model
         'description',
         'img'
     ];
+
+    public function product()
+    {
+        return $this-> belongsTo(Product::class);
+    }
 }

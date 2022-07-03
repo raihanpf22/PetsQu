@@ -38,7 +38,7 @@ class AuthUserController extends Controller
 
     public function main(Request $request){
 
-
+        
         $product = Product::all();
         if(Auth::check()){
 

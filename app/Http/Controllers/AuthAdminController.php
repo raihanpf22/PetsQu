@@ -40,6 +40,7 @@ class AuthAdminController extends Controller
     public function dashboard(Request $request){
         $admin_name = Admin::with('admin')->get('admin_name');
         $email = Admin::with('admin')->get('email');
+        
 
         return view('sb-admin.dashboard', ['admin_name'=>$admin_name, 'email'=>$email]);
     }

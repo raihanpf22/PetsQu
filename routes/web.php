@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthUserController;
 use App\Http\Controllers\AuthAdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 
 /*
@@ -49,6 +50,11 @@ Route::post('/add_product', [ProductController::class, 'store'])->name('store_pr
 Route::get('/edit_product/{product_id}', [ProductController::class, 'edit'])->name('edit_product');
 Route::put('/update_product/{product_id}',[ProductController::class, 'update'])->name('update_product');
 Route::delete('delete_product/{product_id}',[ProductController::class, 'destroy'])->name('delete_product');
+
+// Route Add cart
+Route::get('/add_cart/{product_id}', [CartController::class, 'add_cart'])->name('add_cart');
+Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+Route::post('/add_cart', [CartController::class, 'store'])->name('store_cart');
 
 
 
