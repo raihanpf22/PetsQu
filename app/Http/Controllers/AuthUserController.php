@@ -19,6 +19,7 @@ class AuthUserController extends Controller
     }
 
     public function userLogin(Request $request){
+        
         $request->validate([
             'email' => 'required',
             'password' => 'required'
@@ -34,6 +35,20 @@ class AuthUserController extends Controller
         }
         return redirect('login')->with('danger','Login details are not valid !');
     }
+
+    public function main(Request $request){
+
+
+        $product = Product::all();
+        if(Auth::check()){
+
+            return view('main', ['product'=>$product]);
+        }
+        return redirect('login')
+        ->with('danger','Login details are not valid !');
+
+    }
+
     
     public function userRegister(Request $request){
         return view('auth.register');
@@ -66,16 +81,7 @@ class AuthUserController extends Controller
         ]);
     }
     
-    public function main(Request $request){
-        $product = Product::all();
-        if(Auth::check()){
-
-            return view('main', ['product'=>$product]);
-        }
-        return redirect('login')
-        ->with('danger','Login details are not valid !');
-
-    }
+    
 
 
     public function userLogout(){

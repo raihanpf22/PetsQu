@@ -23,10 +23,10 @@ Route::get('/', function () {
 })->name('beranda');
 
 // Route User
-Route::get('/main', [AuthUserController::class, 'main'])->name('main');
 
 Route::get('/login', [AuthUserController::class, 'index'])->name('login');
 Route::post('/login/auth', [AuthUserController::class, 'userLogin'])->name('userLogin');
+Route::get('/main', [AuthUserController::class, 'main'])->name('main');
 Route::get('/logout', [AuthUserController::class, 'userLogout'])->name('userLogout');
 
 Route::get('/register', [AuthUserController::class, 'userRegister'])->name('register');
