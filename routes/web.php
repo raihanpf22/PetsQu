@@ -5,7 +5,9 @@ use App\Http\Controllers\AuthUserController;
 use App\Http\Controllers\AuthAdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CartController;
+
 
 
 /*
@@ -33,7 +35,7 @@ Route::get('/logout', [AuthUserController::class, 'userLogout'])->name('userLogo
 Route::get('/register', [AuthUserController::class, 'userRegister'])->name('register');
 Route::post('/register', [AuthUserController::class, 'authRegister'])->name('register.user');
 
-Route::get('/admin',[AuthAdminController::class, 'index'])->name('admin')->name('admin');
+Route::get('/admin',[AuthAdminController::class, 'index'])->name('admin');
 Route::post('/admin/login',[AuthAdminController::class, 'adminLogin'])->name('adminLogin');
 
 Route::get('/dashboard', [AuthAdminController::class, 'dashboard'])->name('dashboard');

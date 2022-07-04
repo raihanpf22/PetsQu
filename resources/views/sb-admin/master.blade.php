@@ -69,7 +69,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('table_order')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Data Order</span></a>
             </li>
@@ -81,7 +81,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('admin')}}">
                 <i class="bi bi-box-arrow-left"></i>
                     <span>Logout</span></a>
             </li>
