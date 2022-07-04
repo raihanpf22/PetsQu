@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->string('order_product_id');
             
             $table->string('order_name_product');
+            $table->string('order_img');
             $table->integer('quantity');
             $table->integer('ammount');
             $table->string('order_address');

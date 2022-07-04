@@ -23,7 +23,7 @@
           <a class="nav-link active" aria-current="page" href="#">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Carts</a>
+          <a class="nav-link" href="{{ route('cart') }}">Carts</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -42,9 +42,9 @@
     <!-- End-Navbar -->
 
     <!-- Cards Product -->
-    
-
   <div class="container py-5">
+    <br>
+    <br>
     <div class="row">
       @foreach($product as $item)
       
@@ -73,14 +73,19 @@
             <div class="d-flex justify-content-between mb-2">
               <p class="text-muted mb-0">Available: <span class="fw-bold">{{$item->stock}}</span></p>
               
-              <input type="number" min="1" max="{{ $item->stock }}" name="quantity" id="quantity" required>
-            </div>
-            <div class="d-flex justify-content-between align-items-center pb-2 mb-1">
-              <a href="#!" class="text-dark fw-bold">Details</a>
-          
-                <a href="{{ route('add_cart', $item->product_id )}}" class="btn btn-success">Add To Cart</a>
-              
-            </div>
+              <form action="{{ route('add_cart', $item->product_id )}}" method = "POST">
+                @csrf
+
+                <input type="number" min="1" max="{{ $item->stock }}" name="quantity" id="quantity" required>
+              </div>
+              <div class="d-flex justify-content-between align-items-center pb-2 mb-1">
+                <a href="#!" class="text-dark fw-bold">Details</a>
+            
+                  <button type="submit" class="btn btn-success">Add To Cart</button>
+                
+              </div>
+
+              </form>
               
              
              

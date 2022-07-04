@@ -15,6 +15,7 @@ class CartController extends Controller
         
        
         $id = $request->product_id;
+        $quantity = $request->quantity;
         $product = Product::where('product_id',$id)->first();
         $user = User::where('email', auth()->user()->email)->first();
 
@@ -23,8 +24,9 @@ class CartController extends Controller
         $order -> order_user_id = auth()->user()->user_id;
         $order -> order_product_id = $product->product_id;
         $order -> order_name_product = $product->name_product;
-        $order -> quantity = 2;
-        $order -> ammount = ($product->price)*2;
+        $order -> order_img = $product->img;
+        $order -> quantity = $quantity;
+        $order -> ammount = ($product->price)*$quantity;
         $order -> order_address = $user->address;
         $order -> order_email = $user->email;
         $order -> order_status = "Keranjang";
@@ -40,8 +42,17 @@ class CartController extends Controller
 
     public function cart(Request $request){
 
-        $id = $request;
-        $order = Order::where('order_id', $request)->first();
+        $id_user = User::where('email', auth()->user()->email)->first() ;
+        $order = Order::where('order_user_id', $id_user->user_id)->where('order_status', 'Keranjang')->get();
+        $total_price = 0;
+        
+        foreach($order as $item){
+            $total_price = $total_price + $item->ammount;
+        }
+
+        $total_item = count($order);
+        return view('cart', ['orders'=>$order, 'total_item'=>$total_item, 'total_price'=>$total_price]);
+        
         
     }
 }
