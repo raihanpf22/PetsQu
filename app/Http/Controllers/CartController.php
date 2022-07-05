@@ -45,6 +45,7 @@ class CartController extends Controller
         $id_user = User::where('email', auth()->user()->email)->first() ;
         $order = Order::where('order_user_id', $id_user->user_id)->where('order_status', 'Keranjang')->get();
         $total_price = 0;
+        $user_id  = $id_user->user_id;
         
         
         foreach($order as $item){
@@ -52,9 +53,39 @@ class CartController extends Controller
         }
 
         $total_item = count($order);
-        return view('cart', ['orders'=>$order, 'total_item'=>$total_item, 'total_price'=>$total_price]);
+        return view('cart', ['orders'=>$order, 'total_item'=>$total_item, 'total_price'=>$total_price, 'user_id'=>$user_id]);
         
     }
+
+
+    public function checkout(Request $request)
+    {
+        $user_id = $request->user_id;
+        $user = User::where('user_id', $user_id)->first();
+        $order = Order::where('order_user_id', $user_id)->get();
+        $price = 0;
+
+        foreach ($order as $item) {
+            # code...
+            $price = $price + $item->ammount;
+        }
+        foreach ($order as $key ) {
+            # code...
+            $key -> order_status = "Checkout";
+            
+            $key -> update();
+
+            
+        } 
+
+        $total_item = count($order);
+
+        alert('Success','Checkout Item Successfully !', 'success');
+
+        return view('checkout', ['orders'=>$order, 'users'=>$user, 'total_item'=>$total_item, 'total_price'=>$price]);
+
+    }
+    
 
     public function destroy($order_id)
     {

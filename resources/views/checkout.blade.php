@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cart | PetsQu</title>
+    <title>Checkout | PetsQu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 <body>
@@ -39,11 +39,12 @@
         </div>
       </nav>
           <!-- End-Navbar -->
-      
+
+
           <div class="container h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
               <div class="col">
-                <p><span class="h2">Shopping Cart </span><span class="h4">({{ $total_item }} item in your cart)</span></p>
+                <p><span class="h2">Checkout Cart </span><span class="h4">({{ $total_item }} item)</span></p>
                 
                 @foreach ($orders as $item)
                     
@@ -79,19 +80,7 @@
                          
                         </div>
                       </div>
-                      <div class="col-md-2 d-flex justify-content-center">
-                        <div>
-                            <p class="small text-muted mb-4 pb-2">Action</p>
-                            <div>
-                              <form action="{{ route('delete_cart', $item->order_id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Hapus</button>
-                              </form>
-
-                            </div>
-                        </div>
-                      </div>
+                    
                     </div>
         
                   </div>
@@ -110,26 +99,54 @@
         
                   </div>
                 </div>
-        
-                <div class="d-flex justify-content-end">
-                  <a href={{ route('main') }} class="btn btn-light btn-lg me-2">Continue shopping</a>
-                  <form action="{{ route('checkout', $user_id) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="btn btn-primary btn-lg">CheckOut</button>
-                  </form>
 
-                  
-                </div>
+                <div class="card mb-5">
+                    <div class="card-body p-4">
+                        <div>
+                            <h2>Shipping Address</h2>
+                            <div class="alert alert-info">
+                                <h4>{{ $users['address'] }}</h4>
+                            </div>
+                        </div>
+                        <div>
+                            <h2>Postal Code</h2>
+                            <div class="alert alert-info">
+                                <h4>{{ $users['postal_code'] }}</h4>
+                            </div>
+                        </div>
+                        <div>
+                            <h2>Telephone Number</h2>
+                            <div class="alert alert-info">
+                                <h4>{{ $users['telp'] }}</h4>
+                            </div>
+                        </div>
+          
+                    </div>
+                  </div>
+
+                <div class="card mb-5">
+                    <div class="card-body p-4" style="text-align: center;">
+          
+                      <h1>Barang Berhasil Di Checkout !</h1>
+                      <h2>Segera lakukan pembayaran ke no. rekening di bawah ini :</h2>
+                      <div class="alert alert-secondary">
+
+                          <h4><i>867236726932</i> <strong>A/N Raihan Pambagyo Fadhila</strong></h4>
+                      </div>
+          
+                    </div>
+                  </div>
+        
+                
+
         
               </div>
             </div>
           </div>
-           
-                
-            
-            
-           
-    
+
+
+
+
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

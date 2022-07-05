@@ -67,5 +67,7 @@ Route::post('/add_cart/{product_id}', [CartController::class, 'add_cart'])->name
 Route::post('/add_cart', [CartController::class, 'store'])->name('store_cart');
 Route::delete('/delete_cart/{product_id}', [CartController::class, 'destroy'])->name('delete_cart');
 
+Route::post('/checkout/{user_id}', [CartController::class, 'checkout'])->name('checkout');
+
 
 
