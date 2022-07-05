@@ -83,7 +83,11 @@
                         <div>
                             <p class="small text-muted mb-4 pb-2">Action</p>
                             <div>
-                                <a href=" " class="btn btn-danger">Hapus</a>
+                              <form action="{{ route('delete_cart', $item->order_id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Hapus</button>
+                              </form>
 
                             </div>
                         </div>
@@ -109,7 +113,9 @@
         
                 <div class="d-flex justify-content-end">
                   <a href={{ route('main') }} class="btn btn-light btn-lg me-2">Continue shopping</a>
-                  <button type="button" class="btn btn-primary btn-lg">CheckOut</button>
+
+                    <button type="button" class="btn btn-primary btn-lg">CheckOut</button>
+                  
                 </div>
         
               </div>

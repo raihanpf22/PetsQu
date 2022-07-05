@@ -11,11 +11,9 @@ use Illuminate\Support\Facades\Auth;
 class AuthAdminController extends Controller
 {
     //
-    public function __construct() {
-        $this->middleware('guest:admin', ['except' => ['logout']]);
-    }
 
     public function index(){
+
         return view('auth.admin');
     }
 
@@ -47,7 +45,6 @@ class AuthAdminController extends Controller
     }
 
     public function adminLogout(Request $request){
-        $request->session()->flush();
         Auth::guard('admin')->logout();
         return view('admin');
     }

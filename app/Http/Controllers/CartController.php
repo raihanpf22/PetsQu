@@ -46,6 +46,7 @@ class CartController extends Controller
         $order = Order::where('order_user_id', $id_user->user_id)->where('order_status', 'Keranjang')->get();
         $total_price = 0;
         
+        
         foreach($order as $item){
             $total_price = $total_price + $item->ammount;
         }
@@ -53,6 +54,16 @@ class CartController extends Controller
         $total_item = count($order);
         return view('cart', ['orders'=>$order, 'total_item'=>$total_item, 'total_price'=>$total_price]);
         
+    }
+
+    public function destroy($order_id)
+    {
+        $order = Order::find($order_id);
         
+        $order ->delete();
+
+        alert('Success','Successfully Remove Item !', 'success');
+
+        return redirect()->back();
     }
 }

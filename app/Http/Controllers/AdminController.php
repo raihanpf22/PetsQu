@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 use Alert;
 
+
 class AdminController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Display a listing of the resource.
      *

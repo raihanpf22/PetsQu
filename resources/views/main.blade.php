@@ -10,6 +10,7 @@
   </head>
   <body style="background-color: #eee;">
     @include('sweetalert::alert')
+    
     <!-- Navbar -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
@@ -45,6 +46,7 @@
   <div class="container py-5">
     <br>
     <br>
+    <h1>Products</h1>
     <div class="row">
       @foreach($product as $item)
       

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+@include('sweetalert::alert')
 <html>
     <head>
         <title>Login | PetsQu</title>

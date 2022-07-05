@@ -8,7 +8,7 @@ use Seesion;
 use App\Models\User;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
-use RealRashid\SweetAlert\Facades\Alert;
+use Alert;
 
 
 class AuthUserController extends Controller
@@ -66,7 +66,8 @@ class AuthUserController extends Controller
         $data = $request->all();
         $check = $this->create($data);
         
-        return redirect("main")->with('success', 'Account Created Successfully!');
+        alert('Success','Account Created Successfully !', 'success');
+        return view('auth.login');
         
     }
     
