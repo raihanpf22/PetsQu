@@ -81,6 +81,12 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" href="{{route('table_admin')}}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Data Admin</span></a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin')}}">
                 <i class="bi bi-box-arrow-left"></i>
                     <span>Logout</span></a>

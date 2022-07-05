@@ -25,12 +25,14 @@ class AuthAdminController extends Controller
             'email' => 'required',
             'password' => 'required'
         ]);
+        $email = $request->email;
+        $name_admin = Admin::where('email', $email)->first();
         
         if (Auth::guard('admin')->attempt(['email'=> $request->email, 'password'=> $request->password])){
     
             $request->session()->regenerate();
             
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard', ['name_admin'=>$name_admin, 'email'=>$email]);
         }
         return redirect("admin");
     }
@@ -38,11 +40,10 @@ class AuthAdminController extends Controller
     
 
     public function dashboard(Request $request){
-        $admin_name = Admin::with('admin')->get('admin_name');
-        $email = Admin::with('admin')->get('email');
-        
+        $email = $request->email;
+        $admin = Admin::where('email', $email)->first();
 
-        return view('sb-admin.dashboard', ['admin_name'=>$admin_name, 'email'=>$email]);
+        return view('sb-admin.dashboard', ['admins'=>$admin]);
     }
 
     public function adminLogout(Request $request){

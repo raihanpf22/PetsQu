@@ -1,16 +1,12 @@
 @extends('sb-admin.master')
 
 @section('content')
-
+@include('sweetalert::alert')
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <br>
     <br>
-    @if (session('status'))
-    <div class="alert alert-success">
-    {{ session('status') }}
-    </div>
-    @endif
+    
 
 <div class="card mb-4 py-3 border-left-primary">
         <div class="card-body">

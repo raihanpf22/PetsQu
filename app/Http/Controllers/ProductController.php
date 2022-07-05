@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\File;
+use Alert;
 
 class ProductController extends Controller
 {
@@ -147,6 +148,7 @@ class ProductController extends Controller
             File::delete($destination);
         }
         $product -> delete();
+        alert('Success','Account Successfully Deleted !', 'success');
         return redirect()->back()->with('status', 'Product Image Deleted Successfully !');
     }
 }

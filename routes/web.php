@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\AdminController;
 
 
 
@@ -42,6 +43,13 @@ Route::get('/dashboard', [AuthAdminController::class, 'dashboard'])->name('dashb
 Route::get('/dashboard/table_user', [UserController::class, 'index'])->name('table_user');
 Route::get('/dashboard/table_product', [ProductController::class, 'index'])->name('table_product');
 Route::get('/dashboard/table_order', [OrderController::class, 'index'])->name('table_order');
+Route::get('/dashboard/table_admin', [AdminController::class, 'index'])->name('table_admin');
+
+Route::get('/add_admin',[AdminController::class, 'create'])->name('create_admin');
+Route::post('/add_admin',[AdminController::class, 'store'])->name('store_admin');
+Route::get('/edit_admin/{admin_id}',[AdminController::class, 'edit'])->name('edit_admin');
+Route::put('/update_admin/{admin_id}',[AdminController::class, 'update'])->name('update_admin');
+Route::delete('/delete/{admin_id}', [AdminController::class, 'destroy'])->name('delete_admin');
 
 Route::get('/edit_user/{user_id}', [UserController::class, 'edit'])->name('edit_user');
 Route::put('/update_user/{user_id}', [UserController::class, 'update'])->name('update_user');
@@ -51,7 +59,7 @@ Route::get('/add_product', [ProductController::class, 'create'])->name('create_p
 Route::post('/add_product', [ProductController::class, 'store'])->name('store_product');
 Route::get('/edit_product/{product_id}', [ProductController::class, 'edit'])->name('edit_product');
 Route::put('/update_product/{product_id}',[ProductController::class, 'update'])->name('update_product');
-Route::delete('delete_product/{product_id}',[ProductController::class, 'destroy'])->name('delete_product');
+Route::delete('/delete_product/{product_id}',[ProductController::class, 'destroy'])->name('delete_product');
 
 // Route Add cart
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');

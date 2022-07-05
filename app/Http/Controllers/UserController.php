@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Alert;
 
 class UserController extends Controller
 {
@@ -39,6 +40,9 @@ class UserController extends Controller
         $user -> password = Hash::make($NewPassword);
         
         $user -> update();
+
+        alert('Success','Update Account Successfully !', 'success');
+
         return redirect()->back()->with('status', 'User Updated Successfully !');
     }
 
@@ -48,6 +52,9 @@ class UserController extends Controller
         $user = User::find($user_id);
         
         $user -> delete();
+
+        alert('Success','Account Successfully Deleted !', 'success');
+        
         return redirect()->back()->with('status', 'User Account Deleted Successfully !');
     }
 }

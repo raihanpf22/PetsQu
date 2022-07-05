@@ -174,9 +174,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                @foreach($email as $mail)
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{$mail->email}}</span>
-                                @endforeach
+                               
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{$admins['email']}}</span>
+                               
                                 <img class="img-profile rounded-circle"
                                     src="vendor/sb-admin/img/undraw_profile.svg">
                             </a>
@@ -209,12 +209,12 @@
                 <!-- End of TopBar -->
                 <div class="container-fluid">
 
-                    @foreach($admin_name as $name)
+                    
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Halo, {{$name-> admin_name}}</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Halo, {{$admins['admin_name']}}</h1>
                     </div>
-                    @endforeach
+                    
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>

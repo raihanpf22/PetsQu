@@ -21,8 +21,8 @@ class adminSeeder extends Seeder
 
         
         DB::table('admin')->insert([
-            'admin_name'=> 'AdminProgrammer',
-            'email'=> 'raihanpf22@student.gunadarma.ac.id',
+            'admin_name'=> 'AdminProgrammer2',
+            'email'=> 'swieta@student.gunadarma.ac.id',
             'telp' => '082260307011',
             'password'=> Hash::make('123'),
             'created_at' =>$faker-> dateTime($max = 'now', $timezone = null),
